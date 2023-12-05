@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Baitap_module02.iml" filepath="$PROJECT_DIR$/.idea/Baitap_module02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Session01/Session01.iml" filepath="$PROJECT_DIR$/Session01/Session01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Session02_array_string/Session02_array_string.iml" filepath="$PROJECT_DIR$/Session02_array_string/Session02_array_string.iml" />
+    </modules>
+  </component>
+</project>
