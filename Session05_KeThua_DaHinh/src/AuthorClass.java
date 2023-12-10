@@ -21,13 +21,12 @@ public class AuthorClass {
             System.out.println("---> Thêm tác giả thành công");
             return true;
         } else {
-            System.out.println("Thêm tác giả bị trùng Id");
+            System.out.println("---> Thêm tác giả bị trùng Id");
             return false;
         }
     }
 
-    public Author chooseAuthor(int indexAuthor){
-
+    public Author chooseAuthor(int indexAuthor){                         // chọn index tác giả
         return authors[indexAuthor];
     }
     public boolean edit(String id){
@@ -69,24 +68,31 @@ public class AuthorClass {
     }
 
     public void remove(String author){
+        boolean removeAuthorCheck = false;
         for (int i = 0; i < index; i++){
             if (authors[i].getName().equals(author)){
                 for (int j = i; j <index; j++){
                     authors[j] = authors[j+1];
                 }
+                removeAuthorCheck =true;
+                break;
             }
+        }
+        if (removeAuthorCheck){
             authors[index - 1] = null;
             index--;
             System.out.println("---> Hoàn thành xóa tác giả");
-            break;
+        } else {
+            System.out.println("---> Tác giả muốn xóa không có trong danh sách");
         }
     }
 
     public void show(){
-        System.out.println("-------***-------");
+        System.out.println("----------------------------*****----------------------****");
+        System.out.println("Danh sách tác giả");
         for (int i = 0; i < index; i++){
-            System.out.print("Index"+i+"   ");
-            System.out.printf("Id: %-5s|| Name: %-10s|| Email: %-15s|| Gender: %-5s|| Age: %-5d ",
+            System.out.print("Index "+i+"   ");
+            System.out.printf("Id: %-5s|| Name: %-15s|| Email: %-20s|| Gender: %-5s|| Age: %-5d ",
                              authors[i].getId(),
                              authors[i].getName(),
                              authors[i].getEmail(),
@@ -94,7 +100,13 @@ public class AuthorClass {
                              authors[i].getAge());
             System.out.println();
         }
-        System.out.println("-------***-------");
+        System.out.println("----------------------------*****----------------------****");
+    }
+    public boolean checkAuthorsLength(){
+        if (index == 0){
+            return true;
+        }
+        return false;
     }
 
 }
@@ -112,8 +124,9 @@ public class AuthorClass {
  *      5. Quay lại (quay trở về menu chính)
  * Khi chọn menu 2. Quản lý sách
  *      1. Thêm sách
- *      2. Tìm kiếm sách theo tiêu đề
- *      3. Tìm kiếm sách theo tên tác giả
- *      4. Cập nhật sách (theo id)
- *      5. Quay lại (Quay về menu chính)
+ *      2. Hiển thị sách
+ *      3. Tìm kiếm sách theo tiêu đề
+ *      4. Tìm kiếm sách theo tên tác giả
+ *      5. Cập nhật sách (theo id)
+ *      6. Quay lại (Quay về menu chính)
  */

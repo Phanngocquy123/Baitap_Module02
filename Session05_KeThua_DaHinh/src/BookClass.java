@@ -21,9 +21,10 @@ public class BookClass {
                 books = Arrays.copyOf(books, books.length + defaultElement);
             }
             books[index++] = bookObj;
+            System.out.println("---> Thêm sách thành công");
             return true;
         } else {
-            System.out.println("Sách thêm bị trùng Id");
+            System.out.println("---> Sách thêm bị trùng Id");
             return false;
         }
     }
@@ -37,9 +38,13 @@ public class BookClass {
     }
                                                                           // 3 - Tìm kiếm sách theo tiêu đề
     public Book findTitle(String title) {
+        for (int i = 0; i < booksFindTitle.length; i++) {
+            booksFindTitle[i] = null;
+        }
+        indexFindTitle = 0;
         Boolean checkTitle = false;
-        for (int i = 0; i < books.length; i++) {
-            if (books[i] != null && books[i].getTitle().toUpperCase().contains(title.toUpperCase())) {
+        for (int i = 0; i < index; i++) {
+            if (books[i].getTitle().toUpperCase().contains(title.toUpperCase())) {
                 if (booksFindTitle.length == defaultElement) {
                     booksFindTitle = Arrays.copyOf(booksFindTitle, booksFindTitle.length + defaultElement);
                 }
@@ -48,7 +53,7 @@ public class BookClass {
             }
         }
         if (checkTitle) {
-            System.out.println(".........SEARCH TITLE.........");
+            System.out.println("....................................SEARCH TITLE.............");
             for (int i = 0; i < indexFindTitle; i++) {
                 System.out.printf("Id: %-5s|| Title: %-10s|| Author: %-15s|| Price: %-5.2f",
                         booksFindTitle[i].getId(),
@@ -57,7 +62,8 @@ public class BookClass {
                         booksFindTitle[i].getPrice());
                 System.out.println();
             }
-            System.out.println(".........SEARCH TITLE.........");
+            System.out.println("....................................SEARCH TITLE.............");
+            System.out.println("");
             return books[1];
         } else {
             System.out.println("---> Không có tiêu đề bạn muốn tìm");
@@ -65,17 +71,18 @@ public class BookClass {
         return null;
     }
 
-    public boolean existBookWithAuthor(String authorCheck) {
+    public boolean existBookWithAuthor(String idAuthorCheck) {                 // check tồn tại tác giả muốn xóa
         boolean authorResult = false;
-        for (int i = 0; i < books.length; i++) {
-            if (books[i] != null && books[i].getId().equals(authorCheck)) {
+        for (int i = 0; i < index; i++) {
+            if (books[i].getAuthor().getName().equals(idAuthorCheck)) {
                 authorResult = true;
+                break;
             }
         }
         return authorResult;
     }
 
-    public Book findAuthor(String author) {
+    public Book findAuthor(String author) {                                    // 4 - Tìm kiếm sách theo tên giác giả
         for (int i = 0; i < booksFindAuthor.length; i++) {
             booksFindAuthor[i] = null;
         }
@@ -92,7 +99,7 @@ public class BookClass {
             }
         }
         if (checkAuthor) {
-            System.out.println(".........SEARCH AUTHOR.........");
+            System.out.println("...................................SEARCH AUTHOR.............");
             for (int i = 0; i < indexFindAuthor; i++) {
                 System.out.printf("Id: %-5s|| Title: %-10s|| Author: %-15s|| Price: %-5.2f",
                         booksFindAuthor[i].getId(),
@@ -101,7 +108,8 @@ public class BookClass {
                         booksFindAuthor[i].getPrice());
                 System.out.println();
             }
-            System.out.println(".........SEARCH AUTHOR.........");
+            System.out.println("...................................SEARCH AUTHOR.............");
+            System.out.println("");
             return books[1];
         } else {
             System.out.println("---> Không có tác giả bạn muốn tìm");
@@ -109,9 +117,22 @@ public class BookClass {
         return null;
     }
 
+    int iIndexUpdate = -1;                                                          // check id và lấy vị trí index để update
+    public int updateCheckId(String id){
+        for (int i = 0; i < index; i++){
+            if (books[i].getId().equals(id)){
+                iIndexUpdate = i;
+            }
+        }
+        return iIndexUpdate;
+    }
+    public void update(Book objUpdate){                                             // update sách
+        books[iIndexUpdate] = objUpdate;
+        System.out.println("---> Cập nhập sách thành công");
+    }
                                                                                      // 2 - Hiển thị sách
     public void show() {
-        System.out.println(".........***.........");
+        System.out.println("----------------------------*****----------------------****");
         System.out.println("Danh sách SÁCH");
         for (int i = 0; i < index; i++) {
             System.out.printf("Id: %-5s|| Title: %-10s|| Author: %-15s|| Price: %-5.2f",
@@ -121,8 +142,9 @@ public class BookClass {
                     books[i].getPrice());
             System.out.println();
         }
-        System.out.println(".........***.........");
+        System.out.println("-----------------------------*****----------------------****");
     }
+
 }
 /*
  * Viết chương trình Java quản lý thư viện. Quản lý 2 loại thông tin về sách và tác giả
@@ -140,7 +162,7 @@ public class BookClass {
  *
  * Khi chọn menu 2. Quản lý sách
  *      1. Thêm sách
- *  2. Hiển thị sách
+ *      2. Hiển thị sách
  *      3. Tìm kiếm sách theo tiêu đề
  *      4. Tìm kiếm sách theo tên tác giả
  *      5. Cập nhật sách (theo id)
