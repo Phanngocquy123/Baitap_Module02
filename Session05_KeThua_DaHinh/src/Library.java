@@ -10,29 +10,19 @@ public class Library {
         int chooseAuthor;
         int chooseBook;
 
-        //Author au1 = new Author("M1","authorA","a@gmail.com","nam",20);
-        //Author au2 = new Author("M2","3","4","nam",20);
-        //Author au3 = new Author("M3","4","5","55nam",30);
-
-        //authorClass.add(au1);
-        //authorClass.add(au2);
-        //authorClass.add(au3);
-        //  Book bo1 = new Book("A1","song",["M1","authorA","a@gmail.com","nam",20],20);
-        // bo1.setAuthor(authorClass[2].ge);
-
     showLibrary();
     do {
-        System.out.print("Chọn chức năng LIBRARY LIST: ");
+        System.out.print("Chọn chức năng LIBRARY LIST (NUMBER): ");
         chooseLibrary = Integer.parseInt(sc.nextLine());
         switch (chooseLibrary){
-            case 1:
+            case 1:                                                                // AUTHOR
                 System.out.println("");
                 showAuthor();
                 do {
-                    System.out.print("Chọn chức năng AUTHORS: ");
+                    System.out.print("Chọn chức năng AUTHORS (NUMBER): ");
                     chooseAuthor = Integer.parseInt(sc.nextLine());
                     switch (chooseAuthor){
-                        case 1:
+                        case 1:                                                    // THÊM
                             Author authorObj = new Author();
 
                             System.out.println("------Thêm tác giả------");
@@ -50,15 +40,15 @@ public class Library {
                             authorClass.add(authorObj);
                             break;
                         case 2:
-                            authorClass.show();                                      // hiển thị
+                            authorClass.show();                                      // HIỂN THỊ
                             break;
                         case 3:
-                            System.out.print("Nhập Id tác giả muốn cập nhập: ");     // edit
+                            System.out.print("Nhập Id tác giả muốn cập nhập: ");     // UPDATE
                             String idEdit = sc.nextLine();
                             authorClass.edit(idEdit);
                             break;
                         case 4:
-                            System.out.print("Nhập tác giả muốn xóa (NAME): ");             // xóa tác giả
+                            System.out.print("Nhập tác giả muốn xóa (NAME): ");       // REMOVE tác giả
                             String removeAuthor = sc.nextLine();
                             if (!bookClass.existBookWithAuthor(removeAuthor)){
                                 authorClass.remove(removeAuthor);
@@ -71,17 +61,17 @@ public class Library {
                     }
                 } while (chooseAuthor != 5);
                 break;
-            case 2:
+            case 2:                                                                   // BOOK
                 if (authorClass.checkAuthorsLength()){
                     System.out.println("Chưa có tác giả trong thư viện, vui lòng thêm tác giả");
                     break;
                 }
                 showBook();
                 do {
-                    System.out.print("Chọn chức năng BOOK: ");
+                    System.out.print("Chọn chức năng BOOK (NUMBER): ");
                     chooseBook = Integer.parseInt(sc.nextLine());
                     switch (chooseBook){
-                        case 1:
+                        case 1:                                                       // THÊM
                             System.out.println("------ Thêm sách ------");
                             Book bookObj = new Book();
                             System.out.print("Nhập Id sách: ");
@@ -94,25 +84,25 @@ public class Library {
                             authorClass.show();
                             System.out.print("Chọn tác giả muốn thêm (index): ");
                             int indexAuthor = Integer.parseInt(sc.nextLine());
-                            // authorClass.chooseAuthor(indexAuthor);
+                            // CHỌN VỊ TRÍ INDEX tác giả TRONG LIST AUTHORS
                             bookObj.setAuthor(authorClass.chooseAuthor(indexAuthor));
                             bookClass.add(bookObj);
                             break;
-                        case 2:
+                        case 2:                                                         // SHOW
                             bookClass.show();
                             break;
-                        case 3:
+                        case 3:                                                         // SEARCH TITLE
                             System.out.print("Nhập Title tìm kiếm: ");
                             String titleInput = sc.nextLine();
                             bookClass.findTitle(titleInput);
                             break;
-                        case 4:
+                        case 4:                                                         // SEARCH NAME
                             System.out.print("Nhập tên tác giả muốn tìm: ");
                             String findAuthor = sc.nextLine();
                             bookClass.findAuthor(findAuthor);
                             break;
                         case 5:
-                            System.out.print("Nhập id sách muốn cập nhật: ");
+                            System.out.print("Nhập id sách muốn cập nhật: ");            // UPDATE
                             String idAuthorUpdate = sc.nextLine();
                             if (bookClass.updateCheckId(idAuthorUpdate) != -1){
                                 Book bookObjUpdate = new Book();
@@ -141,11 +131,8 @@ public class Library {
             default:
         }
     }while (chooseLibrary != 3);
-
-
-
-
     }
+
     public static void showLibrary(){
         System.out.println("---------LIBRARY LIST----------");
         System.out.println("1 - Quản lý tác giả");

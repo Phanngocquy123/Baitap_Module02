@@ -26,10 +26,10 @@ public class AuthorClass {
         }
     }
 
-    public Author chooseAuthor(int indexAuthor){                         // chọn index tác giả
+    public Author chooseAuthor(int indexAuthor){                         // chọn index tác giả để thêm vào list sách
         return authors[indexAuthor];
     }
-    public boolean edit(String id){
+    public boolean edit(String id){                                       // UPDATE
         if (findId(id) == null){
             System.out.println("---> Không có Id tác giả muốn tìm");
             return false;
@@ -67,7 +67,7 @@ public class AuthorClass {
         return null;
     }
 
-    public void remove(String author){
+    public void remove(String author){                                              // REMOVE
         boolean removeAuthorCheck = false;
         for (int i = 0; i < index; i++){
             if (authors[i].getName().equals(author)){
