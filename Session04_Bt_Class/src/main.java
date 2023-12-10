@@ -2,7 +2,7 @@ public class main {
     public static void main(String[] args) {
         ClassSt classSt = new ClassSt();
 
-        Student st1 = new Student("N1","M1", "AB",8,5,4);
+        Student st1 = new Student("N1","M1", "AB",8,5,4,2);
         Student st2 = new Student("N2","M2", "ED",9,5,4);
         Student st3 = new Student("N3","M3", "DA",7,5,8);
         Student st4 = new Student("N4","M4", "CA",4,5,7);

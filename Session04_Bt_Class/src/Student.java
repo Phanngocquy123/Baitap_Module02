@@ -6,7 +6,7 @@ public class Student {
     private double markHtml;
     private double markJs;
     private double markAvg;
-
+    private int age;
     public Student() {
     }
 
@@ -17,7 +17,17 @@ public class Student {
         this.markCss = markCss;
         this.markHtml = markHtml;
         this.markJs = markJs;
+
     }
+    public Student(String id, String firstName, String lastName, double markCss, double markHtml, double markJs, int age) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.markCss = markCss;
+        this.markHtml = markHtml;
+        this.markJs = markJs;
+        this.age = age;
+    }  // Ctrl + d copy double
 
     public String getId() {
         return id;
